@@ -1,2 +1,2 @@
 # ICP2017F-Final-Project
-Henry and Cameron's final project
+Henry Rossiter and Cameron Arellano's final project
