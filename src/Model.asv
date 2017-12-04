@@ -8,7 +8,6 @@ end
 %F = @(x,xdata) 100000 * exp(x(1)*(1-exp(-x(2)*xdata)));
 log100k = log(100000);
 F = @(x,xdata) log100k + (x(1)*(1-exp(-x(2)*xdata)));
-clf
 figure(1);
 x0 =  [10,.1];
 [x,resnorm,~,exitflag,output] = lsqcurvefit(F,x0,time,[0,log(sums(2:length(sums)))]);
@@ -24,20 +23,12 @@ ylabel('Tumor Cell Count');
 legend([a1,a2], l1, l2, 'location','northwest');
 xlim([0 24])
 ylim([0 200000000])
-
-
-regressionVals = F(x,time);
-differences = sums-regressionVals;
-%sigma = std(differences)
-sigma = std(regressionVals);
-
-
-
 FileFolder = 'C:\Users\Henry\Documents\MATLAB\ICP2017F-Final-Project-master\results';
 baseFileName = 'ModelPlot';
 saveas(figure(1),fullfile(FileFolder,baseFileName),'jpeg');
 textName = 'parameters.txt';
 fileID = fopen(fullfile(FileFolder,textName),'w');
-fprintf(fileID,['lambda: ' num2str(x(1)) '\nc: ' num2str(x(2)),'\nsigma: ',num2str(sigma)]);
+fprintf(fileID,['lambda: ' num2str(x(1)) '\nc: ' num2str(x(2))]);
 fclose(fileID);
 
+regressionVals = F2()
